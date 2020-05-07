@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Tyler Hirschel",
+  "classifications": ["Custom Templates"],
+  "identity": "CQRSMicroservice",
+  "name": "CQRS Microservice",
+  "shortName": "cqrs-ms",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "symbols": {
+    "projectName": {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "PROJECT_NAME",
+      "fileRename": "PROJECT_NAME",
+      "isRequired": true
+    },
+    "repoName": {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "REPO_NAME",
+      "isRequired": true
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": ["README.md"]
+        }
+      ],
+      "rename": {"__README.md":"README.md"}
+    }
+  ]
+}
