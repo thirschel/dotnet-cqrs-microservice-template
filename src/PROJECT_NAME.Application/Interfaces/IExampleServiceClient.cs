@@ -1,4 +1,4 @@
-﻿using PROJECT_NAME.Application.Models;
+﻿using PROJECT_NAME.Domain.Models;
 using System.Threading.Tasks;
 
 namespace PROJECT_NAME.Application.Interfaces

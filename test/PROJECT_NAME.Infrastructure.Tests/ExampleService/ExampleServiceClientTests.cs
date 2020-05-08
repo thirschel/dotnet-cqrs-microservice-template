@@ -7,7 +7,7 @@ using Xunit;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using PROJECT_NAME.Application.Models;
+using PROJECT_NAME.Domain.Models;
 using Microsoft.Extensions.Options;
 using Moq.Protected;
 using Newtonsoft.Json;

@@ -1,6 +1,6 @@
 using AutoMapper;
 using Bogus;
-using PROJECT_NAME.Application.Models;
+using PROJECT_NAME.Domain.Models;
 using PROJECT_NAME.Infrastructure.ExampleService;
 using Xunit;
 

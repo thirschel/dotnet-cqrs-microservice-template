@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using PROJECT_NAME.Application.Interfaces;
-using PROJECT_NAME.Application.Models;
+using PROJECT_NAME.Domain.Models;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
 using System;

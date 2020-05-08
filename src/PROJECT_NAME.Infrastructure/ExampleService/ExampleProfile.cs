@@ -1,5 +1,5 @@
 using AutoMapper;
-using PROJECT_NAME.Application.Models;
+using PROJECT_NAME.Domain.Models;
 
 namespace PROJECT_NAME.Infrastructure.ExampleService
 {

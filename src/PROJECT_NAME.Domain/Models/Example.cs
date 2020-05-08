@@ -1,4 +1,4 @@
-namespace PROJECT_NAME.Application.Models
+namespace PROJECT_NAME.Domain.Models
 {
     public class Example
     {

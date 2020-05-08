@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PROJECT_NAME.Application.Models;
+using PROJECT_NAME.Domain.Models;
 using PROJECT_NAME.Application.Commands.Example;
 using PROJECT_NAME.Application.Queries.Example;
 using MediatR;

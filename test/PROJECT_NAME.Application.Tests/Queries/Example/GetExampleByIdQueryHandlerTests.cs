@@ -1,5 +1,6 @@
 using System.Threading;
 using PROJECT_NAME.Application.Models;
+using PROJECT_NAME.Domain.Models;
 using PROJECT_NAME.Application.Queries.Example;
 using PROJECT_NAME.Application.Interfaces;
 using Moq;
@@ -37,7 +38,7 @@ namespace PROJECT_NAME.Application.Tests.Queries.Example
             var mockLogger = new Mock<ILogger>();
 
             exampleServiceClientMock.Setup(x => x.GetExampleById(It.IsAny<int>()))
-                .ReturnsAsync(new Models.Example());
+                .ReturnsAsync(new Domain.Models.Example());
 
             var handler = new GetExampleByIdQueryHandler(
                 mockLogger.Object,
