@@ -61,7 +61,6 @@ namespace PROJECT_NAME.Infrastructure.Tests.ExampleService
             await exampleServiceClient.GetExampleById(exampleId);
 
             // ASSERT
-
             var expectedUri = new Uri($"http://localhost/api/v1/examples/{exampleId}");
 
             handlerMock.Protected().Verify(
