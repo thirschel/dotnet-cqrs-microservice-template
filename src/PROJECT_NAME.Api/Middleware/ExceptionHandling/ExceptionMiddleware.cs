@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Net;
-using System.Text.Json;
 using System.Threading.Tasks;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Serilog;
 
-namespace PROJECT_NAME.Api.Middleware.EexceptionHandling
+namespace PROJECT_NAME.Api.Middleware.ExceptionHandling
 {
     public class ExceptionMiddleware
     {

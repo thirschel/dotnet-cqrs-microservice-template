@@ -1,14 +1,14 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
+﻿using System.Text.Json.Serialization;
+using CorrelationId;
 using Lamar;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PROJECT_NAME.Api.Configurations.Extensions;
-using PROJECT_NAME.Api.Middleware.EexceptionHandling;
-using CorrelationId;
+using PROJECT_NAME.Api.Middleware.ExceptionHandling;
+using CorrelationId.DependencyInjection;
+using CorrelationId.HttpClient;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace PROJECT_NAME.Api
@@ -25,7 +25,7 @@ namespace PROJECT_NAME.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureContainer(ServiceRegistry services)
         {
-            services.AddCorrelationId();
+            services.AddDefaultCorrelationId();
             services.AddHttpContextAccessor();
             services.AddMvc();
             services.AddVersionedApiExplorer(options => options.GroupNameFormat = "'v'VVV");
@@ -36,23 +36,22 @@ namespace PROJECT_NAME.Api
                 o.AssumeDefaultVersionWhenUnspecified = true;
             });
             services.AddOptions();
-            services.AddHttpClient();
-            services.AddSwagger(Configuration);
+            services.AddHttpClient(string.Empty)
+                .AddCorrelationIdForwarding();
+
+            services.AddSwagger();
             services.AddDependencyInjection(Configuration);
-            services.AddControllers();
+
             services.AddHealthChecks();
-            services.AddSwaggerGen(c =>
-            {
-                // This coupled with the properties in the csproj allow the swagger page to show additional comments for methods
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-            });
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
+            app.UseCorrelationId();
             app.UseMiddleware<ExceptionMiddleware>();
             app.UseSwaggerDocumentation(provider);
             app.UseRouting();

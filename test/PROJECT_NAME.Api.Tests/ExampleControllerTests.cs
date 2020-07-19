@@ -14,19 +14,24 @@ namespace PROJECT_NAME.Api.Tests
 {
     public class ExampleControllerTests
     {
+        private readonly Mock<IMediator> _mediatorMock;
+        private readonly Mock<ILogger> _loggerMock;
+        public ExampleControllerTests()
+        {
+            _mediatorMock = new Mock<IMediator>();
+            _loggerMock = new Mock<ILogger>();
+        }
+
         [Fact]
-        public async void GetExampleById_Should_Return_Ok_Result()
+        public async void GetExampleById_ShouldReturnOkResult()
         {
             // ARRANGE     
-            var mediatorMock = new Mock<IMediator>();
-            var loggerMock = new Mock<ILogger>();
-
-            mediatorMock
+            _mediatorMock
                 .Setup(x => x.Send(It.IsAny<GetExampleByIdQuery>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new QueryResult<Example>());
             var controller = new ExampleController(
-                loggerMock.Object,
-                mediatorMock.Object
+                _loggerMock.Object,
+                _mediatorMock.Object
             );
 
             // ACT
@@ -34,23 +39,38 @@ namespace PROJECT_NAME.Api.Tests
 
             // ASSERT
             Assert.IsType<OkObjectResult>(response.Result);
-            mediatorMock.Verify(x => x.Send(It.IsAny<GetExampleByIdQuery>(), It.IsAny<CancellationToken>()), Times.Once());
-
+            _mediatorMock.Verify(x => x.Send(It.IsAny<GetExampleByIdQuery>(), It.IsAny<CancellationToken>()), Times.Once());
         }
 
         [Fact]
-        public async void GetExampleById_Should_Return_Bad_Result_If_Invalid_Input()
+        public async void GetExampleById_ShouldReturnNotFoundResult_WhenQueryResultNotFound()
         {
             // ARRANGE     
-            var mediatorMock = new Mock<IMediator>();
-            var loggerMock = new Mock<ILogger>();
+            _mediatorMock
+                .Setup(x => x.Send(It.IsAny<GetExampleByIdQuery>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new QueryResult<Example>() { Type = QueryResultTypeEnum.NotFound });
+            var controller = new ExampleController(
+                _loggerMock.Object,
+                _mediatorMock.Object
+            );
 
-            mediatorMock
+            // ACT
+            var response = await controller.GetExampleById(1);
+
+            // ASSERT
+            Assert.IsType<NotFoundResult>(response.Result);
+        }
+
+        [Fact]
+        public async void GetExampleById_ShouldReturnBadResult_WhenInvalidInput()
+        {
+            // ARRANGE     
+            _mediatorMock
                 .Setup(x => x.Send(It.IsAny<GetExampleByIdQuery>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new QueryResult<Example>() { Type = QueryResultTypeEnum.InvalidInput });
             var controller = new ExampleController(
-                loggerMock.Object,
-                mediatorMock.Object
+                _loggerMock.Object,
+                _mediatorMock.Object
             );
 
             // ACT
@@ -61,18 +81,15 @@ namespace PROJECT_NAME.Api.Tests
         }
 
         [Fact]
-        public async void UpdateExampleNameById_Should_Return_Ok_Result()
+        public async void UpdateExampleNameById_ShouldReturnOkResult()
         {
             // ARRANGE      
-            var mediatorMock = new Mock<IMediator>();
-            var loggerMock = new Mock<ILogger>();
-
-            mediatorMock
+            _mediatorMock
                 .Setup(x => x.Send(It.IsAny<UpdateExampleNameCommand>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new CommandResult<bool>());
             var controller = new ExampleController(
-                loggerMock.Object,
-                mediatorMock.Object
+                _loggerMock.Object,
+                _mediatorMock.Object
             );
 
             // ACT
@@ -80,23 +97,38 @@ namespace PROJECT_NAME.Api.Tests
 
             // ASSERT
             Assert.IsType<OkObjectResult>(response.Result);
-            mediatorMock.Verify(x => x.Send(It.IsAny<UpdateExampleNameCommand>(), It.IsAny<CancellationToken>()), Times.Once());
-
+            _mediatorMock.Verify(x => x.Send(It.IsAny<UpdateExampleNameCommand>(), It.IsAny<CancellationToken>()), Times.Once());
         }
 
         [Fact]
-        public async void UpdateExampleNameById_Should_Return_Bad_Result_If_Invalid_Input()
+        public async void UpdateExampleNameById_ShouldReturnNotFoundResult_WhenCommandResultNotFound()
         {
             // ARRANGE 
-            var mediatorMock = new Mock<IMediator>();
-            var loggerMock = new Mock<ILogger>();
+            _mediatorMock
+                .Setup(x => x.Send(It.IsAny<UpdateExampleNameCommand>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new CommandResult<bool>() { Type = CommandResultTypeEnum.NotFound });
+            var controller = new ExampleController(
+                _loggerMock.Object,
+                _mediatorMock.Object
+            );
 
-            mediatorMock
+            // ACT
+            var response = await controller.UpdateExampleNameById(1, "newName");
+
+            // ASSERT
+            Assert.IsType<NotFoundResult>(response.Result);
+        }
+
+        [Fact]
+        public async void UpdateExampleNameById_ShouldReturnBad_Result_WhenInvalidInput()
+        {
+            // ARRANGE 
+            _mediatorMock
                 .Setup(x => x.Send(It.IsAny<UpdateExampleNameCommand>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new CommandResult<bool>() { Type = CommandResultTypeEnum.InvalidInput });
             var controller = new ExampleController(
-                loggerMock.Object,
-                mediatorMock.Object
+                _loggerMock.Object,
+                _mediatorMock.Object
             );
 
             // ACT

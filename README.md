@@ -47,4 +47,4 @@ When upgrading, it is best practice to uninstall the template and then re-instal
 
 **__In most cases `repoName (-r)` and `output (-o)` will be the same. Due to the cli they needed to be different parameters__**
 
-`dotnet new cqrs-ms -P <PROJECT NAME> -R <REPO NAME>`
+`dotnet new cqrs-ms -p <PROJECT NAME> -r <REPO NAME> -o <NEW FOLDER NAME>`

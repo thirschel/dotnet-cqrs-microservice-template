@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
@@ -21,11 +24,11 @@ namespace PROJECT_NAME.Api.Configurations.Extensions
                 });
         }
 
-        internal static void AddSwagger(this IServiceCollection services, IConfiguration configuration)
+        internal static void AddSwagger(this IServiceCollection services)
         {
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
                     Title = "PROJECT_NAME API",
@@ -37,7 +40,7 @@ namespace PROJECT_NAME.Api.Configurations.Extensions
                     }
                 });
 
-                c.SwaggerDoc("v2", new OpenApiInfo
+                options.SwaggerDoc("v2", new OpenApiInfo
                 {
                     Version = "v2",
                     Title = "PROJECT_NAME API",
@@ -48,8 +51,10 @@ namespace PROJECT_NAME.Api.Configurations.Extensions
                         Email = string.Empty,
                     }
                 });
-
-                c.DescribeAllEnumsAsStrings();
+                // This coupled with the properties in the csproj allow the swagger page to show additional comments for methods
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
             });
         }
     }

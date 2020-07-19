@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CorrelationId;
+using CorrelationId.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Serilog.Core;
 using Serilog.Events;

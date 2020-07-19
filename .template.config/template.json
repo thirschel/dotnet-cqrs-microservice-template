@@ -28,7 +28,11 @@
     {
       "modifiers": [
         {
-          "exclude": ["README.md"]
+          "exclude": [
+            "README.md",
+            ".git/**",
+            ".vs/**"
+          ]
         }
       ],
       "rename": {"__README.md":"README.md"}
