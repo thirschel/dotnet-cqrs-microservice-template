@@ -10,6 +10,8 @@ using PROJECT_NAME.Api.Middleware.ExceptionHandling;
 using CorrelationId.DependencyInjection;
 using CorrelationId.HttpClient;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using PROJECT_NAME.Api.HealthChecks;
+using PROJECT_NAME.Api.Middleware.Logging;
 
 namespace PROJECT_NAME.Api
 {
@@ -40,6 +42,8 @@ namespace PROJECT_NAME.Api
                 .AddCorrelationIdForwarding();
 
             services.AddSwagger();
+            services.AddHealthChecks().AddCheck<ReadinessCheck>("PROJECT_NAME readiness", tags: new[] {"readiness"});
+            services.AddCustomizedLogging();
             services.AddDependencyInjection(Configuration);
 
             services.AddHealthChecks();

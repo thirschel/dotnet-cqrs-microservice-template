@@ -1,10 +1,9 @@
-﻿using PROJECT_NAME.Api.Middleware.Logging;
-using PROJECT_NAME.Infrastructure;
-using Lamar;
+﻿using Lamar;
 using MediatR;
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PROJECT_NAME.Application.Models;
 
 namespace PROJECT_NAME.Api.Configurations.Extensions
 {
@@ -30,7 +29,6 @@ namespace PROJECT_NAME.Api.Configurations.Extensions
             });
             services.AddTransient<IMediator, Mediator>();
             services.For<ServiceFactory>().Use(ctx => ctx.GetInstance);
-            services.AddSingleton(LoggingServiceFactory.LoggingService);
         }
     }
 }

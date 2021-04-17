@@ -42,15 +42,6 @@ namespace PROJECT_NAME.Api.Middleware.ExceptionHandling
             context.Response.StatusCode = (int)code;
 
             string result = "An error has occurred";
-            /*if (_options.DisplayStacktrace)
-            {
-                result = JsonSerializer.Serialize(new
-                {
-                    error = exception.Message.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries),
-                    stack = exception.StackTrace.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
-                });
-                context.Response.ContentType = "application/json";
-            }*/
 
             return context.Response.WriteAsync(result);
         }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using System.Net.Http;
 using System;
 using Newtonsoft.Json;
+using PROJECT_NAME.Application.Models;
 using Serilog;
 
 namespace PROJECT_NAME.Infrastructure.ExampleService

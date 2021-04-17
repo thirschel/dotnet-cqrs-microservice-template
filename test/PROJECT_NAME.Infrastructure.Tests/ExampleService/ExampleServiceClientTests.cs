@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using Moq.Protected;
 using Newtonsoft.Json;
 using AutoMapper;
+using PROJECT_NAME.Application.Models;
 
 namespace PROJECT_NAME.Infrastructure.Tests.ExampleService
 {

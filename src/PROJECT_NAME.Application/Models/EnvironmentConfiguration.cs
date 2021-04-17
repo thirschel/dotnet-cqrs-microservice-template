@@ -1,4 +1,4 @@
-namespace PROJECT_NAME.Infrastructure
+namespace PROJECT_NAME.Application.Models
 {
     /*
     This file should contain all the keys in the environment variables
