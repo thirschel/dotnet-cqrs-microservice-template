@@ -1,6 +1,7 @@
 ﻿using Lamar.Microsoft.DependencyInjection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace PROJECT_NAME.Api
 {
@@ -9,12 +10,16 @@ namespace PROJECT_NAME.Api
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+
         }
 
-        public static IWebHostBuilder CreateHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseUrls("http://*:5000")
-                .UseStartup<Startup>()
-                .UseLamar();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .UseLamar()
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://localhost:5000");
+                });
     }
 }
