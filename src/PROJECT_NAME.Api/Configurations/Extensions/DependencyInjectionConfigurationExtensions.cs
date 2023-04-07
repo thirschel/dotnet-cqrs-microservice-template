@@ -4,6 +4,8 @@ using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PROJECT_NAME.Application.Models;
+using PROJECT_NAME.Application.Commands.Example;
+using PROJECT_NAME.Application.Queries.Example;
 
 namespace PROJECT_NAME.Api.Configurations.Extensions
 {
@@ -27,8 +29,7 @@ namespace PROJECT_NAME.Api.Configurations.Extensions
                 _.WithDefaultConventions();
                 _.LookForRegistries();
             });
-            services.AddTransient<IMediator, Mediator>();
-            services.For<ServiceFactory>().Use(ctx => ctx.GetInstance);
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Startup).Assembly));
         }
     }
 }

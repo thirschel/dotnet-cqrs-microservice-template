@@ -5,7 +5,7 @@ This project acts as a dotnet cli custom template when using `dotnet new`. This 
 
 | Feature |
 |---|
-| .NET 6.0  |
+| .NET 7.0  |
 | [Clean Architecture](http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)  |
 | [CQRS](https://martinfowler.com/bliki/CQRS.html)  |
 |  Docker File   |
@@ -14,7 +14,7 @@ This project acts as a dotnet cli custom template when using `dotnet new`. This 
 
 | Requirement |
 |---|
-| .NET 6.0 SDK  |
+| .NET 7.0 SDK  |
 
 ## Installation 
 1. Clone this repo
