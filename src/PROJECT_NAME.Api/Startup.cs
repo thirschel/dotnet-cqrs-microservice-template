@@ -2,16 +2,17 @@
 using CorrelationId;
 using Lamar;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PROJECT_NAME.Api.Configurations.Extensions;
 using PROJECT_NAME.Api.Middleware.ExceptionHandling;
 using CorrelationId.DependencyInjection;
 using CorrelationId.HttpClient;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using PROJECT_NAME.Api.HealthChecks;
 using PROJECT_NAME.Api.Middleware.Logging;
+using Asp.Versioning;
+using Asp.Versioning.ApiExplorer;
+using Microsoft.AspNetCore.Routing;
 
 namespace PROJECT_NAME.Api
 {
@@ -30,12 +31,17 @@ namespace PROJECT_NAME.Api
             services.AddDefaultCorrelationId();
             services.AddHttpContextAccessor();
             services.AddMvc();
-            services.AddVersionedApiExplorer(options => options.GroupNameFormat = "'v'VVV");
             services.AddApiVersioning(o =>
             {
                 o.ReportApiVersions = true;
                 o.DefaultApiVersion = new ApiVersion(1, 0);
                 o.AssumeDefaultVersionWhenUnspecified = true;
+            })
+            .AddMvc()
+            .AddApiExplorer(
+            options =>
+            {
+                options.GroupNameFormat = "'v'VVV";
             });
             services.AddOptions();
             services.AddHttpClient(string.Empty)

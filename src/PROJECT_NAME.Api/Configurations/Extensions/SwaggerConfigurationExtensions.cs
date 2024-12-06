@@ -1,10 +1,12 @@
 using System;
 using System.IO;
 using System.Reflection;
+using Asp.Versioning;
+using Asp.Versioning.ApiExplorer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace PROJECT_NAME.Api.Configurations.Extensions
@@ -22,6 +24,7 @@ namespace PROJECT_NAME.Api.Configurations.Extensions
                         options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                     }
                 });
+
         }
 
         internal static void AddSwagger(this IServiceCollection services)

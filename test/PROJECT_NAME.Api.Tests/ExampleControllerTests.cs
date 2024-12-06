@@ -9,6 +9,7 @@ using PROJECT_NAME.Api.Controllers;
 using Moq;
 using Serilog;
 using Xunit;
+using System.Threading.Tasks;
 
 namespace PROJECT_NAME.Api.Tests
 {
@@ -23,7 +24,7 @@ namespace PROJECT_NAME.Api.Tests
         }
 
         [Fact]
-        public async void GetExampleById_ShouldReturnOkResult()
+        public async Task GetExampleById_ShouldReturnOkResult()
         {
             // ARRANGE     
             _mediatorMock
@@ -43,7 +44,7 @@ namespace PROJECT_NAME.Api.Tests
         }
 
         [Fact]
-        public async void GetExampleById_ShouldReturnNotFoundResult_WhenQueryResultNotFound()
+        public async Task GetExampleById_ShouldReturnNotFoundResult_WhenQueryResultNotFound()
         {
             // ARRANGE     
             _mediatorMock
@@ -62,7 +63,7 @@ namespace PROJECT_NAME.Api.Tests
         }
 
         [Fact]
-        public async void GetExampleById_ShouldReturnBadResult_WhenInvalidInput()
+        public async Task GetExampleById_ShouldReturnBadResult_WhenInvalidInput()
         {
             // ARRANGE     
             _mediatorMock
@@ -81,7 +82,7 @@ namespace PROJECT_NAME.Api.Tests
         }
 
         [Fact]
-        public async void UpdateExampleNameById_ShouldReturnOkResult()
+        public async Task UpdateExampleNameById_ShouldReturnOkResult()
         {
             // ARRANGE      
             _mediatorMock
@@ -101,7 +102,7 @@ namespace PROJECT_NAME.Api.Tests
         }
 
         [Fact]
-        public async void UpdateExampleNameById_ShouldReturnNotFoundResult_WhenCommandResultNotFound()
+        public async Task UpdateExampleNameById_ShouldReturnNotFoundResult_WhenCommandResultNotFound()
         {
             // ARRANGE 
             _mediatorMock
@@ -120,7 +121,7 @@ namespace PROJECT_NAME.Api.Tests
         }
 
         [Fact]
-        public async void UpdateExampleNameById_ShouldReturnBad_Result_WhenInvalidInput()
+        public async Task UpdateExampleNameById_ShouldReturnBad_Result_WhenInvalidInput()
         {
             // ARRANGE 
             _mediatorMock

@@ -6,6 +6,7 @@ using PROJECT_NAME.Application.Commands.Example;
 using PROJECT_NAME.Application.Queries.Example;
 using MediatR;
 using Serilog;
+using Asp.Versioning;
 
 namespace PROJECT_NAME.Api.Controllers
 {

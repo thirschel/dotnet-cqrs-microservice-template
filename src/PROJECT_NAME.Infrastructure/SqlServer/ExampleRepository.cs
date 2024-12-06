@@ -4,8 +4,6 @@ using AutoMapper;
 using Dapper;
 using PROJECT_NAME.Application.Interfaces;
 using PROJECT_NAME.Application.Models;
-using PROJECT_NAME.Application.Queries.Example;
-using Newtonsoft.Json.Linq;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Options;
 

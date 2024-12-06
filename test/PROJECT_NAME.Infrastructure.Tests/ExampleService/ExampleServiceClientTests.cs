@@ -29,7 +29,7 @@ namespace PROJECT_NAME.Infrastructure.Tests.ExampleService
         }
 
         [Fact]
-        public async void GetExampleById_CallsCorrectUrl()
+        public async Task GetExampleById_CallsCorrectUrl()
         {
             // ARRANGE
             _handlerMock
@@ -81,7 +81,7 @@ namespace PROJECT_NAME.Infrastructure.Tests.ExampleService
         }
 
         [Fact]
-        public async void GetExampleById_ThrowsException_WhenRequestIsNotSuccessful()
+        public async Task GetExampleById_ThrowsException_WhenRequestIsNotSuccessful()
         {
             // ARRANGE
             _handlerMock

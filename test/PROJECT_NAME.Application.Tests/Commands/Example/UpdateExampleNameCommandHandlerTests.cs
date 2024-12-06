@@ -5,13 +5,14 @@ using PROJECT_NAME.Application.Interfaces;
 using Moq;
 using Serilog;
 using Xunit;
+using System.Threading.Tasks;
 
 namespace PROJECT_NAME.Application.Tests.Commands.Example
 {
     public class UpdateExampleNameCommandHandlerTests
     {
         [Fact]
-        public async void Request_With_No_Id_Should_Return_Invalid_Input()
+        public async Task Request_With_No_Id_Should_Return_Invalid_Input()
         {
             // ARRANGE
             var validator = new UpdateExampleNameCommandValidator();
@@ -32,7 +33,7 @@ namespace PROJECT_NAME.Application.Tests.Commands.Example
         }
 
         [Fact]
-        public async void Should_Call_GetExampleById_In_Repository()
+        public async Task Should_Call_GetExampleById_In_Repository()
         {
             // ARRANGE
             var validator = new UpdateExampleNameCommandValidator();
@@ -56,7 +57,7 @@ namespace PROJECT_NAME.Application.Tests.Commands.Example
         }
 
         [Fact]
-        public async void Should_Return_Not_Found_If_No_Example()
+        public async Task Should_Return_Not_Found_If_No_Example()
         {
             // ARRANGE
             var validator = new UpdateExampleNameCommandValidator();
